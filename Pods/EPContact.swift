@@ -21,12 +21,14 @@ open class EPContact {
     open var contactId: String?
     open var phoneNumbers = [(phoneNumber: String, phoneLabel: String)]()
     open var emails = [(email: String, emailLabel: String )]()
-	
+    open var original: CNContact
+    
     public init (contact: CNContact) {
         firstName = contact.givenName
         lastName = contact.familyName
         company = contact.organizationName
         contactId = contact.identifier
+        original = contact
         
         if let thumbnailImageData = contact.thumbnailImageData {
             thumbnailProfileImage = UIImage(data:thumbnailImageData)
